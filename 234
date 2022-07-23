@@ -1,0 +1,17 @@
+#include <stdio.h>
+int N;
+int arr[110] = {1, 2};
+int func(int cnt){
+  if(cnt == N){
+    return arr[N];
+  }else{
+    arr[cnt] = (arr[cnt-2] * arr[cnt-1])%100;
+    return func(cnt+1);
+  }
+}
+int main(void){
+  int N;
+  scanf("%d", &N);
+  printf("%d",func(2));
+  return 0;
+}
