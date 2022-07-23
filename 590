@@ -1,24 +1,40 @@
 #include <stdio.h>
-
 unsigned int N;
-int mul(int x, int y){
-    int end = 1;
-    while(y >= 0){
-        end *= x;
+int arr[12];
+
+void func(int cnt, int sta) {
+  if(cnt >= N) {
+    for(int i = 0; i < N; i++) {
+      printf("%d ", arr[i]);
     }
+    printf("\n");
+    return;
+  }
+
+  for(int i = sta; i <= 6; i++) {
+    arr[cnt] = i;
+    func(cnt+1, i);
+  }
+/*
+  for(int i=0;i<N;i++){
+    printf("%d", *(arrptr+i));
+  }
+  int tmp = 0;
+  for(int i=N-1;i>=0;i--){
+    if(*(arrptr+i) != 6){
+      *(arrptr+i)=*(arrptr+i)+1;
+      break;
+    }else{tmp++;}
+  }
+  if(tmp == N){
     return 0;
+  }else{
+    return func(arrptr);
+  }
+*/
 }
-int func(int idx){
-    int arr[N];
-    for(int i=0;i<N;i++){
-        arr[i] = idx % mul(6,i+1);
-    }
-    for(int i=0;i<N;i++){
-        printf("%d ", arr[i]);
-    }
-}
-int main(){
-    scanf("%d", &N);
-    func(1);
-    return 0;
+int main() {
+  scanf("%d", &N);
+  func(0, 1);
+  return 0;
 }
